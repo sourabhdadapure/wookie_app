@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import axios from "axios";
 import { Dispatch } from "redux";
 import { MovieModel } from "./reducers";
 import types from "./types";
@@ -8,10 +8,9 @@ export const getMovies = () => {
     try {
       dispatch({ type: types.GET_MOVIES_LOADING });
 
-      const data: Partial<MovieModel> = await fetch(
+      const data: Partial<MovieModel> = await axios.get(
         "https://wookie.codesubmit.io/movies",
         {
-          method: "GET",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -19,7 +18,7 @@ export const getMovies = () => {
           },
         }
       );
-      console.warn("Data", data);
+      console.warn("Data", JSON.stringify(data));
       const payload = data.movies;
 
       dispatch({ type: types.GET_MOVIES_SUCCESS, payload });

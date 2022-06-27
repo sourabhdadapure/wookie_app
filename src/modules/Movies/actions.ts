@@ -24,3 +24,5 @@ export const getMovies = () => {
     }
   };
 };
+
+export const getMovieDetailsAndNavigate = (movie: MovieModel) => {};

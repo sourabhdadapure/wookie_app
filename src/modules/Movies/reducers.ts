@@ -17,17 +17,9 @@ export class MovieModel {
 export class MoviesModel {
   loading: boolean = false;
   movies: MovieModel[] = [];
-  error: Error = {
-    message: "",
-    name: "",
-  };
-}
-
-export const initialState: MoviesModel = {
-  loading: false,
-  movies: [
-    {
-      backkdrop: "",
+  movieDetails: MovieDetailsModel = {
+    "": {
+      backdrop: "",
       cast: [],
       classification: "",
       generes: [],
@@ -40,7 +32,64 @@ export const initialState: MoviesModel = {
       slug: "",
       title: "",
     },
+  };
+  error: Error = {
+    message: "",
+    name: "",
+  };
+}
+
+export type MovieDetailsModel = {
+  [id: string]: {
+    backdrop: string;
+    cast: string[];
+    classification: string;
+    generes: string[];
+    id: string;
+    imdb_rating: number;
+    length: string;
+    overview: string;
+    poster: string;
+    release_on: string;
+    slug: string;
+    title: string;
+  };
+};
+
+export const initialState: MoviesModel = {
+  loading: false,
+  movies: [
+    {
+      id: "",
+      backkdrop: "",
+      cast: [],
+      classification: "",
+      generes: [],
+      imdb_rating: 0,
+      length: "",
+      overview: "",
+      poster: "",
+      release_on: "",
+      slug: "",
+      title: "",
+    },
   ],
+  movieDetails: {
+    "": {
+      backdrop: "",
+      cast: [],
+      classification: "",
+      generes: [],
+      id: "",
+      imdb_rating: 0,
+      length: "",
+      overview: "",
+      poster: "",
+      release_on: "",
+      slug: "",
+      title: "",
+    },
+  },
   error: {
     name: "",
     message: "",

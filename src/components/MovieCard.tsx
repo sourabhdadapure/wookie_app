@@ -13,10 +13,12 @@ export default class MovieCard extends React.Component<MovieCardProperties> {
     return (
       <TouchableOpacity
         onPress={onMoviePosterPress}
-        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        style={{
+          paddingHorizontal: 5,
+        }}>
         <Image
           source={{ uri: movie.poster }}
-          style={{ width: 100, height: 200 }}
+          style={{ width: 150, height: 250 }}
         />
       </TouchableOpacity>
     );

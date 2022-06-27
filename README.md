@@ -21,3 +21,7 @@
 7. Run npm start from root folder
 8. Select a simulator or you device and hit play
 ```
+
+#Screenshots
+
+https://raw.github.com/sourabhdadapure/wookie_app/master/screenshots/1

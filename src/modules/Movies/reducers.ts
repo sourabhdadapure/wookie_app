@@ -18,6 +18,8 @@ export class MoviesModel {
   loading: boolean = false;
   movies: MovieModel[] = [];
   activeMovieId: string = "";
+  searchedMovies: MovieModel[] = [];
+  searchedTerm: string = "";
   movieDetails: MovieDetailsModel = {
     "": {
       backdrop: "",
@@ -41,6 +43,29 @@ export class MoviesModel {
   };
 }
 
+export type MovieGeneres =
+  | "Action"
+  | "Comedy"
+  | "Drama"
+  | "Horror"
+  | "Biography"
+  | "Thriller"
+  | "History"
+  | "Adventure"
+  | "Animation"
+  | "Crime"
+  | "Mystery"
+  | "Fantasy"
+  | "Family"
+  | "Music"
+  | "Romance"
+  | "Sci-Fi"
+  | "War"
+  | "Western"
+  | "Documentary"
+  | "Short"
+  | "TV Movie";
+
 export type MovieDetailsModel = {
   [id: string]: {
     backdrop: string;
@@ -62,6 +87,23 @@ export type MovieDetailsModel = {
 export const initialState: MoviesModel = {
   loading: false,
   activeMovieId: "",
+  searchedTerm: "",
+  searchedMovies: [
+    {
+      id: "",
+      backkdrop: "",
+      cast: [],
+      classification: "",
+      generes: [],
+      imdb_rating: 0,
+      length: "",
+      overview: "",
+      poster: "",
+      released_on: "",
+      slug: "",
+      title: "",
+    },
+  ],
   movies: [
     {
       id: "",
@@ -108,6 +150,29 @@ export default function (state = initialState, action: any) {
         ...state,
         loading: true,
       };
+
+    case types.SEARCH_MOVIES_LOADING: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case types.SEARCH_MOVIES_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        searchedMovies: action.payload,
+        searchedTerm: action.searchedTerm,
+      };
+    }
+    case types.SEARCH_MOVIES_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    }
     case types.GET_MOVIES_SUCCESS:
       return {
         ...state,

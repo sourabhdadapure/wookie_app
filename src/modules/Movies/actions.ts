@@ -26,6 +26,34 @@ export const getMovies = () => {
   };
 };
 
+export const searchMovies = (query: string) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.SEARCH_MOVIES_LOADING });
+
+      const { data } = await axios.get(
+        `https://wookie.codesubmit.io/movies/search?query=${query}`,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer Wookie2019",
+          },
+        }
+      );
+      const payload = data.movies;
+
+      dispatch({
+        type: types.SEARCH_MOVIES_SUCCESS,
+        payload,
+        searchedTerm: query,
+      });
+    } catch (error) {
+      dispatch({ type: types.SEARCH_MOVIES_ERROR, error });
+    }
+  };
+};
+
 export const getMovieDetailsAndNavigate = (movie: MovieModel) => {
   return async (dispatch: Dispatch) => {
     try {

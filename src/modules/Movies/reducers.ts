@@ -4,7 +4,7 @@ export class MovieModel {
   backkdrop: string = "";
   cast: string[] = [];
   classification: string = "";
-  generes: string[] = [];
+  genres: string[] = [];
   id: string = "";
   imdb_rating: number = 0;
   length: string = "";
@@ -25,7 +25,7 @@ export class MoviesModel {
       backdrop: "",
       cast: [],
       classification: "",
-      generes: [],
+      genres: [],
       id: "",
       imdb_rating: 0,
       length: "",
@@ -43,7 +43,7 @@ export class MoviesModel {
   };
 }
 
-export type MovieGeneres =
+export type Moviegenres =
   | "Action"
   | "Comedy"
   | "Drama"
@@ -71,7 +71,7 @@ export type MovieDetailsModel = {
     backdrop: string;
     cast: string[];
     classification: string;
-    generes: string[];
+    genres: string[];
     id: string;
     imdb_rating: number;
     length: string;
@@ -94,7 +94,7 @@ export const initialState: MoviesModel = {
       backkdrop: "",
       cast: [],
       classification: "",
-      generes: [],
+      genres: [],
       imdb_rating: 0,
       length: "",
       overview: "",
@@ -110,7 +110,7 @@ export const initialState: MoviesModel = {
       backkdrop: "",
       cast: [],
       classification: "",
-      generes: [],
+      genres: [],
       imdb_rating: 0,
       length: "",
       overview: "",
@@ -125,7 +125,7 @@ export const initialState: MoviesModel = {
       backdrop: "",
       cast: [],
       classification: "",
-      generes: [],
+      genres: [],
       id: "",
       imdb_rating: 0,
       length: "",

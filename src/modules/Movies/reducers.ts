@@ -115,6 +115,32 @@ export default function (state = initialState, action: any) {
         loading: false,
         error: action.error,
       };
+
+    case types.GET_MOVIE_DETAILS_AND_NAVIGATE_LOADING: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case types.GET_MOVIE_DETAILS_AND_NAVIGATE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        movieDetails: {
+          ...state.movieDetails,
+          [action.id]: action.payload,
+        },
+      };
+    }
+
+    case types.GET_MOVIE_DETAILS_AND_NAVIGATE_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    }
     default:
       return state;
   }

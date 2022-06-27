@@ -29,16 +29,18 @@ export default class Home extends React.Component<HomeProperties> {
     return (
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ paddingTop: 50 }}>
+        contentContainerStyle={{ paddingTop: 50, paddingBottom: 100 }}>
         {groupedMovies.map((key) => {
-          return (
-            <MovieList
-              title={key}
-              scrollViewType="horizontal"
-              onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
-              movies={Movies.groupedMovies[key]}
-            />
-          );
+          if (Movies.groupedMovies[key].length > 0) {
+            return (
+              <MovieList
+                title={key}
+                scrollViewType="horizontal"
+                onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
+                movies={Movies.groupedMovies[key]}
+              />
+            );
+          }
         })}
       </ScrollView>
     );

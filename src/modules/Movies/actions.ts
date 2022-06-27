@@ -8,18 +8,15 @@ export const getMovies = () => {
     try {
       dispatch({ type: types.GET_MOVIES_LOADING });
 
-      const data: Partial<MovieModel> = await axios.get(
-        "https://wookie.codesubmit.io/movies",
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: "Bearer Wookie2019",
-          },
-        }
-      );
-      console.warn("Data", JSON.stringify(data));
+      const { data } = await axios.get("https://wookie.codesubmit.io/movies", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer Wookie2019",
+        },
+      });
       const payload = data.movies;
+      console.warn("Movies", data);
 
       dispatch({ type: types.GET_MOVIES_SUCCESS, payload });
     } catch (error) {

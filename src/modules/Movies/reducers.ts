@@ -1,28 +1,29 @@
 import types from "./types";
 
 export class MovieModel {
+  backkdrop: string = "";
+  cast: string[] = [];
+  classification: string = "";
+  generes: string[] = [];
+  id: string = "";
+  imdb_rating: number = 0;
+  length: string = "";
+  overview: string = "";
+  poster: string = "";
+  release_on: string = "";
+  slug: string = "";
+  title: string = "";
+}
+export class MoviesModel {
   loading: boolean = false;
-  movies: {
-    backkdrop: string;
-    cast: string[];
-    classification: string;
-    generes: string[];
-    id: string;
-    imdb_rating: number;
-    length: string;
-    overview: string;
-    poster: string;
-    release_on: string;
-    slug: string;
-    title: string;
-  }[] = [];
+  movies: MovieModel[] = [];
   error: Error = {
     message: "",
     name: "",
   };
 }
 
-export const initialState: MovieModel = {
+export const initialState: MoviesModel = {
   loading: false,
   movies: [
     {

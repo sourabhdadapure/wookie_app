@@ -26,7 +26,7 @@ export const getMovies = () => {
   };
 };
 
-export const serachTextChange = (text: string) => {
+export const searchTextChange = (text: string) => {
   return {
     type: types.SEARCH_TEXT_CHANGE,
     payload: text,

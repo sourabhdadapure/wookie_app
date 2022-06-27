@@ -3,9 +3,10 @@ import { Dispatch } from "redux";
 import { MovieModel } from "./reducers";
 import types from "./types";
 import { history } from "../../ViewStack";
+import _ from "lodash";
 
 export const getMovies = () => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch<any>) => {
     try {
       dispatch({ type: types.GET_MOVIES_LOADING });
 
@@ -17,13 +18,31 @@ export const getMovies = () => {
         },
       });
       const payload = data.movies;
-      console.warn("Movies::", data);
 
       dispatch({ type: types.GET_MOVIES_SUCCESS, payload });
+      dispatch(groupMoviesByGenre(payload));
     } catch (error) {
       dispatch({ type: types.GET_MOVIES_ERROR, error });
     }
   };
+};
+
+export const groupMoviesByGenre = (movies: MovieModel[]) => {
+  return (dispatch: Dispatch<any>) => {
+    const GeneresObject: any = {};
+    for (let movie of movies) {
+      for (let genre of movie.genres) {
+        if (!GeneresObject[genre]) {
+          GeneresObject[genre] = [];
+        } else {
+          GeneresObject[genre].push(movie);
+        }
+      }
+    }
+    dispatch({ type: types.GROUP_MOVIES_BY_GENRE, payload: GeneresObject });
+  };
+
+  // console.warn("groupedMovies", count);
 };
 
 export const searchTextChange = (text: string) => {

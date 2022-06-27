@@ -20,6 +20,7 @@ export class MoviesModel {
   activeMovieId: string = "";
   searchedMovies: MovieModel[] = [];
   searchedTerm: string = "";
+  groupedMovies: { [key: string]: MovieModel[] } = {};
   movieDetails: MovieDetailsModel = {
     "": {
       backdrop: "",
@@ -88,6 +89,7 @@ export const initialState: MoviesModel = {
   loading: false,
   activeMovieId: "",
   searchedTerm: "",
+  groupedMovies: {},
   searchedMovies: [
     {
       id: "",
@@ -155,6 +157,13 @@ export default function (state = initialState, action: any) {
       return {
         ...state,
         loading: true,
+      };
+    }
+
+    case types.GROUP_MOVIES_BY_GENRE: {
+      return {
+        ...state,
+        groupedMovies: action.payload,
       };
     }
 

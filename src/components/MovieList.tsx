@@ -14,7 +14,7 @@ export default class MovieList extends React.Component<MovieListProperties> {
   render() {
     const { movies, scrollViewType, title, onMoviePosterPress } = this.props;
     return (
-      <View style={{ flex: 1, paddingTop: 100, paddingLeft: 10 }}>
+      <View style={{ flex: 1, paddingVertical: 10, paddingLeft: 10 }}>
         <Text style={{ paddingVertical: 10 }}>{title}</Text>
         <FlatList
           data={movies}

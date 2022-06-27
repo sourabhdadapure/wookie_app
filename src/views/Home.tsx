@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList, ScrollView } from "react-native";
 import {
   getMovies,
   MovieModel,
@@ -25,15 +25,37 @@ export default class Home extends React.Component<HomeProperties> {
   }
   render() {
     const { Movies, getMovieDetailsAndNavigate } = this.props;
+    console.warn("group", Movies.groupedMovies);
+    const groupedMovies = Object.keys(Movies.groupedMovies);
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <ScrollView style={{ flex: 1 }}>
         <MovieList
           title="Movies"
           scrollViewType="horizontal"
           onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
           movies={Movies.movies}
         />
-      </View>
+        {groupedMovies.map((key) => {
+          return (
+            <MovieList
+              title={key}
+              scrollViewType="horizontal"
+              onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
+              movies={Movies.groupedMovies[key]}
+            />
+          );
+        })}
+        {/* {groupedMovies.map((group) => {
+          return (
+            <MovieList
+              title={group.title}
+              scrollViewType="vertical"
+              onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
+              movies={group.movies}
+            />
+          );
+        })} */}
+      </ScrollView>
     );
   }
 }

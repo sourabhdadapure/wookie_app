@@ -1,5 +1,6 @@
 import * as React from "react";
 import { View, Animated, TouchableOpacity } from "react-native";
+import { history } from "../ViewStack";
 import Icon, { IconTypes } from "./Icon";
 
 export type TabBarType = "home" | "search";
@@ -12,12 +13,10 @@ interface TabBarProperties {
 }
 
 interface HomeTabProperties {
-  onTabPress: () => void;
   position: "top" | "bottom";
 }
 export default class HomeTab extends React.Component<HomeTabProperties> {
   render() {
-    const { onTabPress } = this.props;
     return (
       <View
         style={{
@@ -34,13 +33,13 @@ export default class HomeTab extends React.Component<HomeTabProperties> {
           icon="home"
           active={"home"}
           tab="home"
-          onTabPress={onTabPress}
+          onTabPress={() => history.replace("/")}
         />
         <TabBar
           icon="search"
           active={"search"}
           tab="search"
-          onTabPress={onTabPress}
+          onTabPress={() => history.push("/search/movies")}
         />
       </View>
     );

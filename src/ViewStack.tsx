@@ -14,9 +14,9 @@ export default class ViewStack extends React.Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/movie/:id" component={MovieDetails} />
-          <Route path="/search/:event" component={SearchMovies} />
+          <Route path="/search/:id" component={SearchMovies} />
         </Switch>
-        <HomeTab onTabPress={() => {}} position="bottom" />
+        <HomeTab position="bottom" />
       </Router>
     );
   }

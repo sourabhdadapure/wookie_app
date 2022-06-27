@@ -12,8 +12,9 @@ interface SearchMoviesProperties {
   Movies: MoviesModel;
 }
 
-export default class SearchMovies<SearchMoviesProperties> {
+export default class SearchMovies extends React.Component<SearchMoviesProperties> {
   render() {
+    const { searchMovies, Movies } = this.props;
     return (
       <View>
         <Text>Search</Text>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
-import { Home, MovieDetails } from "./views";
+import { Home, MovieDetails, SearchMovies } from "./views";
 import { Router, Route, Switch } from "react-router-native";
 import { createMemoryHistory } from "history";
 import HomeTab from "./components/TabBar";
@@ -14,6 +14,7 @@ export default class ViewStack extends React.Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/movie/:id" component={MovieDetails} />
+          <Route path="/search/:event" component={SearchMovies} />
         </Switch>
         <HomeTab onTabPress={() => {}} position="bottom" />
       </Router>

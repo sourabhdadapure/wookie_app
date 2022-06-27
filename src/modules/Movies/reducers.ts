@@ -1,20 +1,48 @@
-import types from './types';
+import types from "./types";
 
 export class MovieModel {
   loading: boolean = false;
-  movies: [] = [];
+  movies: {
+    backkdrop: string;
+    cast: string[];
+    classification: string;
+    generes: string[];
+    id: string;
+    imdb_rating: number;
+    length: string;
+    overview: string;
+    poster: string;
+    release_on: string;
+    slug: string;
+    title: string;
+  }[] = [];
   error: Error = {
-    message: '',
-    name: '',
+    message: "",
+    name: "",
   };
 }
 
 export const initialState: MovieModel = {
   loading: false,
-  movies: [],
+  movies: [
+    {
+      backkdrop: "",
+      cast: [],
+      classification: "",
+      generes: [],
+      id: "",
+      imdb_rating: 0,
+      length: "",
+      overview: "",
+      poster: "",
+      release_on: "",
+      slug: "",
+      title: "",
+    },
+  ],
   error: {
-    name: '',
-    message: '',
+    name: "",
+    message: "",
   },
 };
 

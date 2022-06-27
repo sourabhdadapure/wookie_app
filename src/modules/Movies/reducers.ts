@@ -163,7 +163,13 @@ export default function (state = initialState, action: any) {
         ...state,
         loading: false,
         searchedMovies: action.payload,
-        searchedTerm: action.searchedTerm,
+      };
+    }
+
+    case types.SEARCH_TEXT_CHANGE: {
+      return {
+        ...state,
+        searchedTerm: action.payload,
       };
     }
     case types.SEARCH_MOVIES_ERROR: {

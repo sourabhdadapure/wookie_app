@@ -26,13 +26,20 @@ export const getMovies = () => {
   };
 };
 
+export const serachTextChange = (text: string) => {
+  return {
+    type: types.SEARCH_TEXT_CHANGE,
+    payload: text,
+  };
+};
+
 export const searchMovies = (query: string) => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.SEARCH_MOVIES_LOADING });
 
       const { data } = await axios.get(
-        `https://wookie.codesubmit.io/movies/search?query=${query}`,
+        `https://wookie.codesubmit.io/movies?q=${query}`,
         {
           headers: {
             Accept: "application/json",
@@ -42,6 +49,7 @@ export const searchMovies = (query: string) => {
         }
       );
       const payload = data.movies;
+      console.warn("searceh ", payload);
 
       dispatch({
         type: types.SEARCH_MOVIES_SUCCESS,

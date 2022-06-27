@@ -19,7 +19,11 @@ interface SearchBarProperties {
 }
 
 export default class SearchBar extends React.Component<SearchBarProperties> {
+  state = {
+    search: "",
+  };
   render() {
+    const { search } = this.state;
     const { containerStyle, onSearch, searchText } = this.props;
     return (
       <View
@@ -27,17 +31,21 @@ export default class SearchBar extends React.Component<SearchBarProperties> {
           containerStyle,
           {
             flexDirection: "row",
+            marginTop: 100,
             height: 40,
+            width: "90%",
             alignItems: "center",
             alignSelf: "center",
+            borderWidth: 1,
           },
         ]}>
         <TextInput
           autoCapitalize="none"
           autoCorrect={false}
-          onChangeText={(val) => onSearch(val)}
+          onChangeText={(val) => {
+            onSearch(val);
+          }}
           value={searchText}
-          onSubmitEditing={() => onSearch(searchText)}
           returnKeyType="search"
           placeholder="Search movies"
           autoFocus={true}

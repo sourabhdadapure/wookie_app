@@ -25,4 +25,20 @@ export const getMovies = () => {
   };
 };
 
-export const getMovieDetailsAndNavigate = (movie: MovieModel) => {};
+export const getMovieDetailsAndNavigate = (movie: MovieModel) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch({ type: types.GET_MOVIE_DETAILS_AND_NAVIGATE_LOADING });
+      const movieId = movie.id;
+      if (movieId) {
+        dispatch({
+          type: types.GET_MOVIE_DETAILS_AND_NAVIGATE_SUCCESS,
+          payload: movie,
+          id: movieId,
+        });
+      }
+    } catch (error) {
+      dispatch({ type: types.GET_MOVIE_DETAILS_AND_NAVIGATE_ERROR, error });
+    }
+  };
+};

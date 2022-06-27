@@ -2,6 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { MovieModel } from "./reducers";
 import types from "./types";
+import { history } from "../../ViewStack";
 
 export const getMovies = () => {
   return async (dispatch: Dispatch) => {
@@ -16,7 +17,7 @@ export const getMovies = () => {
         },
       });
       const payload = data.movies;
-      console.warn("Movies", data);
+      console.warn("Movies::", data);
 
       dispatch({ type: types.GET_MOVIES_SUCCESS, payload });
     } catch (error) {
@@ -30,7 +31,9 @@ export const getMovieDetailsAndNavigate = (movie: MovieModel) => {
     try {
       dispatch({ type: types.GET_MOVIE_DETAILS_AND_NAVIGATE_LOADING });
       const movieId = movie.id;
+      console.warn("Movies:", movie);
       if (movieId) {
+        history.push("/movie/" + movieId);
         dispatch({
           type: types.GET_MOVIE_DETAILS_AND_NAVIGATE_SUCCESS,
           payload: movie,

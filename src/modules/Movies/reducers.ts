@@ -10,13 +10,14 @@ export class MovieModel {
   length: string = "";
   overview: string = "";
   poster: string = "";
-  release_on: string = "";
+  released_on: string = "";
   slug: string = "";
   title: string = "";
 }
 export class MoviesModel {
   loading: boolean = false;
   movies: MovieModel[] = [];
+  activeMovieId: string = "";
   movieDetails: MovieDetailsModel = {
     "": {
       backdrop: "",
@@ -28,7 +29,8 @@ export class MoviesModel {
       length: "",
       overview: "",
       poster: "",
-      release_on: "",
+      released_on: "",
+      director: "",
       slug: "",
       title: "",
     },
@@ -50,14 +52,16 @@ export type MovieDetailsModel = {
     length: string;
     overview: string;
     poster: string;
-    release_on: string;
+    released_on: string;
     slug: string;
     title: string;
+    director: string;
   };
 };
 
 export const initialState: MoviesModel = {
   loading: false,
+  activeMovieId: "",
   movies: [
     {
       id: "",
@@ -69,7 +73,7 @@ export const initialState: MoviesModel = {
       length: "",
       overview: "",
       poster: "",
-      release_on: "",
+      released_on: "",
       slug: "",
       title: "",
     },
@@ -85,9 +89,10 @@ export const initialState: MoviesModel = {
       length: "",
       overview: "",
       poster: "",
-      release_on: "",
+      released_on: "",
       slug: "",
       title: "",
+      director: "",
     },
   },
   error: {
@@ -131,6 +136,7 @@ export default function (state = initialState, action: any) {
           ...state.movieDetails,
           [action.id]: action.payload,
         },
+        activeMovieId: action.id,
       };
     }
 

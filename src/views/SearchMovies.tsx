@@ -6,6 +6,8 @@ import {
   MovieModel,
   MoviesModel,
   searchMovies,
+  serachTextChange,
+  getMovieDetailsAndNavigate,
 } from "../modules/Movies";
 import { connect } from "react-redux";
 import _ from "lodash";
@@ -14,9 +16,15 @@ import MovieList from "../components/MovieList";
 interface SearchMoviesProperties {
   searchMovies(query: string): void;
   Movies: MoviesModel;
+  serachTextChange(query: string): void;
+  getMovieDetailsAndNavigate(movie: MovieModel): void;
 }
 
-@(connect((state: MoviesModel) => state, { searchMovies }) as any)
+@(connect((state: MoviesModel) => state, {
+  searchMovies,
+  serachTextChange,
+  getMovieDetailsAndNavigate,
+}) as any)
 export default class SearchMovies extends React.Component<SearchMoviesProperties> {
   searchDebounced = _.debounce((e: string) => {
     const { searchMovies } = this.props;
@@ -25,14 +33,28 @@ export default class SearchMovies extends React.Component<SearchMoviesProperties
   }, 500);
 
   render() {
-    const { searchMovies, Movies } = this.props;
+    const {
+      searchMovies,
+      Movies,
+      serachTextChange,
+      getMovieDetailsAndNavigate,
+    } = this.props;
+    console.warn("searced", Movies.searchedMovies);
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <SearchBar
-          onSearch={(val) => this.searchDebounced(val)}
+          onSearch={(val) => {
+            serachTextChange(val);
+            this.searchDebounced(val);
+          }}
           searchText={Movies.searchedTerm}
         />
-        <MovieList movies={Movies.searchedMovies} />
+        <MovieList
+          title="Searched Movies"
+          onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
+          scrollViewType="horizont"
+          movies={Movies.searchedMovies}
+        />
       </View>
     );
   }

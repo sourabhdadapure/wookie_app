@@ -37,6 +37,7 @@ export const searchMovies = (query: string) => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.SEARCH_MOVIES_LOADING });
+      console.warn("searchMovies::", query);
 
       const { data } = await axios.get(
         `https://wookie.codesubmit.io/movies?q=${query}`,
@@ -49,7 +50,7 @@ export const searchMovies = (query: string) => {
         }
       );
       const payload = data.movies;
-      console.warn("searceh ", payload);
+      console.warn("search ", data);
 
       dispatch({
         type: types.SEARCH_MOVIES_SUCCESS,

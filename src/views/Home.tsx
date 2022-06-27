@@ -25,16 +25,11 @@ export default class Home extends React.Component<HomeProperties> {
   }
   render() {
     const { Movies, getMovieDetailsAndNavigate } = this.props;
-    console.warn("group", Movies.groupedMovies);
     const groupedMovies = Object.keys(Movies.groupedMovies);
     return (
-      <ScrollView style={{ flex: 1 }}>
-        <MovieList
-          title="Movies"
-          scrollViewType="horizontal"
-          onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
-          movies={Movies.movies}
-        />
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingTop: 50 }}>
         {groupedMovies.map((key) => {
           return (
             <MovieList
@@ -45,16 +40,6 @@ export default class Home extends React.Component<HomeProperties> {
             />
           );
         })}
-        {/* {groupedMovies.map((group) => {
-          return (
-            <MovieList
-              title={group.title}
-              scrollViewType="vertical"
-              onMoviePosterPress={(val) => getMovieDetailsAndNavigate(val)}
-              movies={group.movies}
-            />
-          );
-        })} */}
       </ScrollView>
     );
   }

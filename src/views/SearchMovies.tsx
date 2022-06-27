@@ -28,7 +28,6 @@ interface SearchMoviesProperties {
 export default class SearchMovies extends React.Component<SearchMoviesProperties> {
   searchDebounced = _.debounce((e: string) => {
     const { searchMovies } = this.props;
-    console.warn("searching for: " + e);
     searchMovies(e);
   }, 500);
 

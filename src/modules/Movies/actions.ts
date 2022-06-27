@@ -41,8 +41,6 @@ export const groupMoviesByGenre = (movies: MovieModel[]) => {
     }
     dispatch({ type: types.GROUP_MOVIES_BY_GENRE, payload: GeneresObject });
   };
-
-  // console.warn("groupedMovies", count);
 };
 
 export const searchTextChange = (text: string) => {
@@ -56,7 +54,6 @@ export const searchMovies = (query: string) => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch({ type: types.SEARCH_MOVIES_LOADING });
-      console.warn("searchMovies::", query);
 
       const { data } = await axios.get(
         `https://wookie.codesubmit.io/movies?q=${query}`,
@@ -69,7 +66,6 @@ export const searchMovies = (query: string) => {
         }
       );
       const payload = data.movies;
-      console.warn("search ", data);
 
       dispatch({
         type: types.SEARCH_MOVIES_SUCCESS,
@@ -87,7 +83,6 @@ export const getMovieDetailsAndNavigate = (movie: MovieModel) => {
     try {
       dispatch({ type: types.GET_MOVIE_DETAILS_AND_NAVIGATE_LOADING });
       const movieId = movie.id;
-      console.warn("Movies:", movie);
       if (movieId) {
         history.push("/movie/" + movieId);
         dispatch({

@@ -24,4 +24,4 @@
 
 #Screenshots
 
-[alt text]https://raw.github.com/sourabhdadapure/wookie_app/master/screenshots/1
+[alt text]https://github.com/sourabhdadapure/wookie_app/blob/main/screenshots/1.png

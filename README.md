@@ -15,10 +15,9 @@
 1. npm install
 2. cd ios
 3. pod install
-4. Open WardrobeBeta.xcworkspace from ios folder. It should open wardrobe mobile project in xcode
+4. Open wookie_app.xcworkspace from ios folder. It should open wookie_app mobile project in xcode
 5. Hit cmd+shift+k to clean the build
-6. Select WardrobeBeta(staging) or Wardrobe(production) in the scheme
-7. Run npx react-native-fix-image from root folder
+6. Select wookie_app in the scheme
 7. Run npm start from root folder
 8. Select a simulator or you device and hit play
 ```
